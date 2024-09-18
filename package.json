@@ -1,0 +1,15 @@
+{
+    "name": "cpp-tester-electron",
+    "version": "1.0.0",
+    "description": "A C++ code tester (diff checker) using Electron for UI",
+    "main": "main.js",
+    "scripts": {
+      "start": "electron ."
+    },
+    "author": "Lightmon",
+    "license": "MIT",
+    "devDependencies": {
+      "electron": "^25.0.0"
+    }
+}
+  
