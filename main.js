@@ -4,6 +4,7 @@ const path = require('path');
 
 let mainWindow;
 
+// 窗口初始化和ipcMain监听渲染器
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -15,6 +16,9 @@ app.on('ready', () => {
   });
 
   mainWindow.loadFile('index.html');
+
+  const rootPath = app.getAppPath();
+  console.log(rootPath);
   
   ipcMain.on('run-compare', (event, input) => {
     exec('make', (error, stdout, stderr) => {
@@ -33,4 +37,8 @@ app.on('ready', () => {
       }
     });
   });
+});
+
+app.on('window-all-closed', () => {
+  app.quit();
 });

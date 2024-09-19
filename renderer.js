@@ -2,6 +2,7 @@ const { ipcRenderer, remote } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
+// 运行按钮
 document.getElementById('run-compare').addEventListener('click', () => {
   // 获取code1和code2元素
   const code1Element = document.getElementById('code1');
@@ -12,11 +13,11 @@ document.getElementById('run-compare').addEventListener('click', () => {
   const code2Content = code2Element.value;
 
   // 获取项目根目录
-  const rootPath = require('electron').remote.app.getPath('userData'); // 使用electron的remote模块获取
+  rootPath = __dirname;
 
   // 创建文件路径
-  const filePath1 = path.join(rootPath, 'code1.txt');
-  const filePath2 = path.join(rootPath, 'code2.txt');
+  const filePath1 = path.join(rootPath, 'code1.cpp');
+  const filePath2 = path.join(rootPath, 'code2.cpp');
 
   // 写入文件
   fs.writeFile(filePath1, code1Content, (err) => {
@@ -38,6 +39,7 @@ document.getElementById('run-compare').addEventListener('click', () => {
   ipcRenderer.send('run-compare');
 });
 
+// 替换结果渲染
 ipcRenderer.on('compare-result', (event, result) => {
   document.getElementById('result').innerText = result;
 });
