@@ -23,7 +23,7 @@ app.on('ready', () => {
           event.reply('compare-result', `Error: Compilation failed. ${stderr}`);
           return;
         }
-    }
+    });
     exec('./compare', (error, stdout, stderr) => {
       if (error) {
         console.error(`Execution error: ${error}`);
