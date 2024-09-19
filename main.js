@@ -25,7 +25,7 @@ app.on('ready', () => {
           return;
         }
     });
-    exec('./compare', (error, stdout, stderr) => {
+    exec('.\\compare.exe', (error, stdout, stderr) => {
       if (error) {
         console.error(`Execution error: ${error}`);
         event.reply('compare-result', `Error: ${stderr}`);

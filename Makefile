@@ -1,17 +1,8 @@
-compare.exe: code1.obj code2.obj input_generator.obj compare.obj
-    g++ -o compare code1.obj code2.obj input_generator.obj compare.obj
-
-code1.obj: code1.cpp
-    g++ -c code1.cpp
-
-code2.obj: code2.cpp
-    g++ -c code2.cpp
-
-input_generator.obj: input_generator.cpp
-    g++ -c input_generator.cpp
-
-compare.obj:
-    g++ -c compare.cpp
-
-clean:
-    rm compare.exe code1.obj code2.obj input_generator.obj compare.obj
+all:
+	g++ -o input_generator.exe input_generator.cpp \
+	&& .\input_generator.exe \
+	&& g++ -o code1.exe code1.cpp \
+	&& .\code1.exe < input.txt > output1.txt\
+	&& g++ -o code2.exe code2.cpp \
+	&& .\code2.exe < input.txt > output2.txt\
+	&& g++ -o compare.exe compare.cpp \
