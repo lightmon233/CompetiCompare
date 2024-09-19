@@ -17,6 +17,13 @@ app.on('ready', () => {
   mainWindow.loadFile('index.html');
   
   ipcMain.on('run-compare', (event, input) => {
+    exec('make', (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error compiling: ${error}`);
+          event.reply('compare-result', `Error: Compilation failed. ${stderr}`);
+          return;
+        }
+    }
     exec('./compare', (error, stdout, stderr) => {
       if (error) {
         console.error(`Execution error: ${error}`);
