@@ -1,26 +1,38 @@
 #include <iostream>
+#include <random>
 #include <fstream>
-#include <cstdlib>
-#include <ctime>
 
-// 输入生成器，生成一定数量的随机数输入
-void generate_input() {
-    std::ofstream infile("input.txt");
+using namespace std;
 
-    int test_cases = 10; // 生成10个测试用例
-    infile << test_cases << std::endl;
+mt19937_64 rnd(1064);
+int rd(int l, int r) {return rnd() % (r - l + 1) + l;}
 
-    std::srand(std::time(nullptr)); // 使用当前时间作为随机种子
-    for (int i = 0; i < test_cases; ++i) {
-        int random_number = std::rand() % 1000; // 生成0到999之间的随机数
-        infile << random_number << std::endl;
+string s[10];
+
+void solve() {
+    ofstream output1;
+    output1.open("../my/input.txt");
+    ofstream output2;
+    output2.open("../cor/input.txt");
+    int t = 5000;
+    output1 << t << '\n';
+    output2 << t << '\n';
+    while (t --) {
+        int n = 5, m = 10;
+        output1 << n << ' ' << m << '\n';
+        output2 << n << ' ' << m << '\n';
+        for (int i = 0; i < n; i ++) {
+            string tmp = "";
+            for (int j = 0; j < m; j ++) {
+                tmp += (rd(0, 25) + 'a');
+            }
+            output1 << tmp << '\n';
+            output2 << tmp << '\n';
+        }
     }
-
-    infile.close();
 }
 
 int main() {
-    generate_input();  // 调用输入生成器
-    std::cout << "Test input generated in input.txt" << std::endl;
+    solve();
     return 0;
 }

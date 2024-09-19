@@ -17,9 +17,6 @@ app.on('ready', () => {
 
   mainWindow.loadFile('index.html');
 
-  const rootPath = app.getAppPath();
-  console.log(rootPath);
-  
   ipcMain.on('run-compare', (event, input) => {
     exec('make', (error, stdout, stderr) => {
         if (error) {
