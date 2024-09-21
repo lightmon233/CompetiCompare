@@ -4,12 +4,14 @@
     "description": "A C++ code tester (diff checker) using Electron for UI",
     "main": "main.js",
     "scripts": {
-      "start": "electron ."
+        "start": "electron ."
     },
     "author": "Lightmon",
     "license": "MIT",
     "devDependencies": {
-      "electron": "^25.0.0"
+        "electron": "^25.0.0"
+    },
+    "dependencies": {
+        "codemirror": "^6.0.1"
     }
 }
-  
