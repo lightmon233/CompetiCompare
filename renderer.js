@@ -1,12 +1,15 @@
+import { editor1, editor2 } from './dist/bundle.js';
+
 const { ipcRenderer, remote } = require('electron');
 const path = require('path');
 const fs = require('fs');
+var rootPath;
 
 // 运行按钮
 document.getElementById('run-compare').addEventListener('click', () => {
   // 获取code1和code2的内容
-  var code1Content = editor1.getValue(); 
-  var code2Content = editor2.getValue();
+  var code1Content = editor1.state.doc.toString(); 
+  var code2Content = editor2.state.doc.toString();
 
   // 获取项目根目录
   rootPath = __dirname;
@@ -39,3 +42,10 @@ document.getElementById('run-compare').addEventListener('click', () => {
 ipcRenderer.on('compare-result', (event, result) => {
   document.getElementById('result').innerText = result;
 });
+
+// 监听主进程发送的根目录路径
+ipcRenderer.on('send-root-path', (event, path) => {
+  rootPath = path;
+})
+
+ipcRenderer.send('get-root-path');

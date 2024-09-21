@@ -39,3 +39,8 @@ app.on('ready', () => {
 app.on('window-all-closed', () => {
   app.quit();
 });
+
+ipcMain.on('get-root-path', (event) => {
+  const rootPath = __dirname;
+  event.reply('send-root-path', rootPath);
+})

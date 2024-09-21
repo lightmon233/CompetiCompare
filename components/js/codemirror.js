@@ -22,3 +22,5 @@ var editor2 = editorFromTextArea(document.getElementById('code2'), [
     cpp(),
     oneDark
 ])
+
+export { editor1, editor2 };

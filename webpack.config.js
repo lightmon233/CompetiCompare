@@ -5,9 +5,9 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'module'
     },
-    target: 'electron-renderer', // 设置目标为 Electron 主进程
+    target: 'electron-renderer', // 设置目标为渲染进程
     module: {
         rules: [
             {
@@ -26,5 +26,8 @@ module.exports = {
         extensions: ['.js'], // 解析的文件扩展名
     },
     mode: 'development', // 或 'production'
-    devtool: 'source-map' // 源映射，有助于调试
+    devtool: 'source-map', // 源映射，有助于调试
+    experiments: {
+        outputModule: true
+    }
 };
