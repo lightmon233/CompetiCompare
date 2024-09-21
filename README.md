@@ -1,6 +1,9 @@
 # CompetiCompare
 一个简单的C++代码对拍器，基于[Electron](https://www.electronjs.org/)构建
 
+## 预览
+![预览图](preview.png)
+
 ## 安装依赖
 ```bash
 npm install
@@ -18,3 +21,4 @@ npm start
 - 上传文件对拍功能
 - 代码括号补全
 - 允许自定义随机数据生成器和对拍器代码
+- 对linux的编译命令优化
