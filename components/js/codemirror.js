@@ -1,4 +1,4 @@
-import { EditorView } from '@codemirror/view'
+import { EditorView, lineNumbers, gutter } from '@codemirror/view'
 import { cpp } from '@codemirror/lang-cpp';
 import { oneDark } from '@codemirror/theme-one-dark';
 
@@ -13,14 +13,32 @@ function editorFromTextArea(textarea, extensions) {
     return view
 }
 
+const myTheme = EditorView.theme({
+    '&': {
+        fontSize: '16px'
+    },
+    '.cm-content': {
+        fontSize: '16px'
+    },
+    '.cm-gutters': {
+        fontSize: '16px'
+    }
+})
+
 // 初始化codemirror编辑器
 var editor1 = editorFromTextArea(document.getElementById('code1'), [
     cpp(),
-    oneDark
+    oneDark,
+    myTheme,
+    lineNumbers(),
+    gutter()
 ]);
 var editor2 = editorFromTextArea(document.getElementById('code2'), [
     cpp(),
-    oneDark
-])
+    oneDark,
+    myTheme,
+    lineNumbers(),
+    gutter()
+]);
 
 export { editor1, editor2 };
