@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CompetiCompare</title>
    <!-- 引入 CodeMirror 样式 -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css"> -->
   
    <!-- 主题样式 (可选) -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror-one-dark-theme@1.1.1/one-dark.min.css"></script>
+   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror-one-dark-theme@1.1.1/one-dark.min.css"></script> -->
    
    <!-- 引入 CodeMirror 脚本 -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script> -->
    
    <!-- 代码语言模式（C++） -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script> -->
 </head>
 <body>
   <h1>C++ 对拍器</h1>
@@ -22,21 +22,7 @@
   <textarea id='code2' rows=20 cols=15></textarea>
   <button id="run-compare">运行对拍</button>
   <div id="result"></div>
-  <script>
-    // 初始化codemirror编辑器
-    var editor1 = CodeMirror.fromTextArea(document.getElementById("code1"), {
-      lineNumbers: true,
-      mode: "text/x-c++src",
-      theme: "one-dark",
-      matchBrackets: true
-    });
-    var editor2 = CodeMirror.fromTextArea(document.getElementById("code2"), {
-      lineNumbers: true,
-      mode: "text/x-c++src",
-      theme: "one-dark",
-      matchBrackets: true
-    })
-  </script>
+  <script src="dist/bundle.js"></script>
   <script src="renderer.js"></script>
 </body>
 </html>
