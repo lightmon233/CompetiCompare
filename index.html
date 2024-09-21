@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CompetiCompare</title>
+   <!-- 引入 CodeMirror 样式 -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+  
+   <!-- 主题样式 (可选) -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+   
+   <!-- 引入 CodeMirror 脚本 -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+   
+   <!-- 代码语言模式（C++） -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
 </head>
 <body>
   <h1>C++ 对拍器</h1>
@@ -11,6 +22,21 @@
   <textarea id='code2' rows=20 cols=15></textarea>
   <button id="run-compare">运行对拍</button>
   <div id="result"></div>
+  <script>
+    // 初始化codemirror编辑器
+    var editor1 = CodeMirror.fromTextArea(document.getElementById("code1"), {
+      lineNumbers: true,
+      mode: "text/x-c++src",
+      theme: "dracula",
+      matchBrackets: true
+    });
+    var editor2 = CodeMirror.fromTextArea(document.getElementById("code2"), {
+      lineNumbers: true,
+      mode: "text/x-c++src",
+      theme: "dracula",
+      matchBrackets: true
+    })
+  </script>
   <script src="renderer.js"></script>
 </body>
 </html>

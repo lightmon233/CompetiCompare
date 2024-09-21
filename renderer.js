@@ -4,13 +4,9 @@ const fs = require('fs');
 
 // 运行按钮
 document.getElementById('run-compare').addEventListener('click', () => {
-  // 获取code1和code2元素
-  const code1Element = document.getElementById('code1');
-  const code2Element = document.getElementById('code2');
-
   // 获取code1和code2的内容
-  const code1Content = code1Element.value; // 假设code1和code2是textarea元素
-  const code2Content = code2Element.value;
+  var code1Content = editor1.getValue(); 
+  var code2Content = editor2.getValue();
 
   // 获取项目根目录
   rootPath = __dirname;
