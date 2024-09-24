@@ -1,9 +1,11 @@
 const path = require('path');
 
 module.exports = {
-    entry: './components/js/codemirror.js', // 要打包的文件
+    entry: {
+        codemirror: './components/js/codemirror.js', // 要打包的文件
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'module'
     },

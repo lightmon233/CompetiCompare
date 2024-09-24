@@ -19,17 +19,26 @@
 <body>
   <h1>C++ 对拍器</h1>
   <div>
-    <textarea id="code1" rows=20 cols=15></textarea>
+    <a href="components/html/input_generator.html" style="text-decoration: none;">
+      <button id="gen">修改随机数据生成代码</button>
+    </a>
+    <a href="components/html/compare.html" style="text-decoration: none;">
+      <button id="com">修改对拍代码</button>
+    </a>
   </div>
   <p></p>
-  <div>
-    <textarea id='code2' rows=20 cols=15></textarea>
+  <div id="code1">
+    <!-- <textarea id="code1" rows=20 cols=15></textarea> -->
+  </div>
+  <p></p>
+  <div id="code2"">
+    <!-- <textarea id='code2' rows=20 cols=15></textarea> -->
   </div>
   <p></p>
   <button id="run-compare">运行对拍</button>
   <p></p>
   <div id="result"></div>
-  <script src="dist/bundle.js" type="module"></script>
+  <script src="components/js/code_editor.js" type="module"></script>
   <script src="renderer.js" type="module"></script>
 </body>
 </html>

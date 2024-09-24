@@ -1,4 +1,4 @@
-import { editor1, editor2 } from './dist/bundle.js';
+import { editor1, editor2 } from './components/js/code_editor.js';
 
 const { ipcRenderer, remote } = require('electron');
 const path = require('path');
