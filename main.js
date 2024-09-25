@@ -17,13 +17,13 @@ app.on('ready', () => {
 
   mainWindow.loadFile('index.html');
 
-  exec('cp backup/compare.cpp.bak compare.cpp', (error, stdout, stderr) => {
+  exec('powershell -Command "cp backup/compare.cpp.bak compare.cpp"', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error}`);
       return;
     }
   });
-  exec('cp backup/input_generator.cpp.bak input_generator.cpp', (error, stdout, stderr) => {
+  exec('powershell -Command "cp backup/input_generator.cpp.bak input_generator.cpp"', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error}`);
       return;
@@ -50,13 +50,13 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
-  exec('rm compare.cpp', (error, stdout, stderr) => {
+  exec('powershell -Command "rm compare.cpp"', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error}`);
       return;
     }
   });
-  exec('rm input_generator.cpp', (error, stdout, stderr) => {
+  exec('powershell -Command "rm input_generator.cpp"', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error}`);
       return;

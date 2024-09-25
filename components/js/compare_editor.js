@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 var rootPath;
 
-const compare_editor = createNewEditorView('compare_editor');
+const compare_editor = createNewEditorView('compare_editor', fs.readFileSync('backup/compare.cpp.bak', 'utf-8'));
 
 document.getElementById('com').addEventListener('click', () => {
     var compareContent = compare_editor.state.doc.toString();

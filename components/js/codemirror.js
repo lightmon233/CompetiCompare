@@ -41,9 +41,9 @@ const myTheme = EditorView.theme({
 //     gutter()
 // ]);
 
-const createNewEditorView = (parent_id) => {
+const createNewEditorView = (parent_id, content="") => {
     return new EditorView({
-        doc: "",
+        doc: content,
         extensions: [
             cpp(),
             oneDark,
