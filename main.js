@@ -17,6 +17,19 @@ app.on('ready', () => {
 
   mainWindow.loadFile('index.html');
 
+  exec('cp backup/compare.cpp.bak compare.cpp', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error}`);
+      return;
+    }
+  });
+  exec('cp backup/input_generator.cpp.bak input_generator.cpp', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error}`);
+      return;
+    }
+  });
+
   ipcMain.on('run-compare', (event, input) => {
     exec('make', (error, stdout, stderr) => {
         if (error) {
@@ -37,6 +50,18 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
+  exec('rm compare.cpp', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error}`);
+      return;
+    }
+  });
+  exec('rm input_generator.cpp', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error}`);
+      return;
+    }
+  });
   app.quit();
 });
 
