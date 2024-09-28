@@ -1,6 +1,10 @@
-import { EditorView, lineNumbers, gutter } from '@codemirror/view'
-import { cpp } from '@codemirror/lang-cpp';
+import { EditorView, lineNumbers, gutter, keymap } from '@codemirror/view'
+import { cppLanguage, cpp } from '@codemirror/lang-cpp'
 import { oneDark } from '@codemirror/theme-one-dark';
+import { bracketMatching, syntaxTree } from '@codemirror/language';
+import { highlightSelectionMatches } from '@codemirror/search';
+import { history, indentWithTab } from '@codemirror/commands';
+import { autocompletion, closeBrackets } from '@codemirror/autocomplete';
 
 // 替代codemirror5的fromTextArea方法
 // function editorFromTextArea(textarea, extensions) {
@@ -45,11 +49,18 @@ const createNewEditorView = (parent_id, content="") => {
     return new EditorView({
         doc: content,
         extensions: [
-            cpp(),
             oneDark,
             myTheme,
             lineNumbers(),
-            gutter()
+            gutter(),
+            bracketMatching({brackets: "(){}[]"}),
+            highlightSelectionMatches(),
+            history(),
+            closeBrackets(),
+            autocompletion(),
+            EditorView.lineWrapping,
+            keymap.of([indentWithTab]),
+            cpp(),
         ],
         parent: document.getElementById(parent_id)
     });
