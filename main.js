@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 const path = require('path');
+const isWindows = process.platform === 'win32';
 
 let mainWindow;
 
@@ -17,13 +18,13 @@ app.on('ready', () => {
 
   mainWindow.loadFile('index.html');
 
-  exec('powershell -Command "cp backup/compare.cpp.bak compare.cpp"', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error: ${error}`);
-      return;
-    }
-  });
-  exec('powershell -Command "cp backup/input_generator.cpp.bak input_generator.cpp"', (error, stdout, stderr) => {
+  const restore_command = isWindows
+    ? `powershell -Command "cp backup/compare.cpp.bak compare.cpp"
+&& powershell -Command "cp backup/input_generator.cpp.bak input_generator.cpp"`
+    : `cp backup/compare.cpp.bak compare.cpp
+&& cp backup/input_generator.cpp.bak input_generator.cpp`
+
+  exec(restore_command, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error}`);
       return;
@@ -38,7 +39,7 @@ app.on('ready', () => {
           return;
         }
     });
-    exec('.\\compare.exe', (error, stdout, stderr) => {
+    exec('make run', (error, stdout, stderr) => {
       if (error) {
         console.error(`Execution error: ${error}`);
         event.reply('compare-result', `Error: ${stderr}`);
