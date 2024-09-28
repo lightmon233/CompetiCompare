@@ -1,10 +1,13 @@
-import { EditorView, lineNumbers, gutter, keymap } from '@codemirror/view'
+import { EditorView, lineNumbers, gutter, keymap, highlightSpecialChars, drawSelection, highlightActiveLine, dropCursor, rectangularSelection, crosshairCursor, highlightActiveLineGutter } from '@codemirror/view'
+import { Extension, EditorState } from '@codemirror/state';
 import { cppLanguage, cpp } from '@codemirror/lang-cpp'
 import { oneDark } from '@codemirror/theme-one-dark';
-import { bracketMatching, syntaxTree } from '@codemirror/language';
-import { highlightSelectionMatches } from '@codemirror/search';
-import { history, indentWithTab } from '@codemirror/commands';
-import { autocompletion, closeBrackets } from '@codemirror/autocomplete';
+import { bracketMatching, syntaxTree, indentOnInput, defaultHighlightStyle, syntaxHighlighting, foldGutter, foldKeymap } from '@codemirror/language';
+import { highlightSelectionMatches, searchKeymap } from '@codemirror/search';
+import { history, indentWithTab, defaultKeymap, historyKeymap } from '@codemirror/commands';
+import { autocompletion, closeBrackets, completionKeymap, closeBracketsKeymap } from '@codemirror/autocomplete';
+import { minimalSetup, basicSetup } from 'codemirror';
+import { lintKeymap } from '@codemirror/lint';
 
 // 替代codemirror5的fromTextArea方法
 // function editorFromTextArea(textarea, extensions) {
@@ -49,6 +52,7 @@ const createNewEditorView = (parent_id, content="") => {
     return new EditorView({
         doc: content,
         extensions: [
+            cpp(),
             oneDark,
             myTheme,
             lineNumbers(),
@@ -59,8 +63,27 @@ const createNewEditorView = (parent_id, content="") => {
             closeBrackets(),
             autocompletion(),
             EditorView.lineWrapping,
-            keymap.of([indentWithTab]),
-            cpp(),
+            keymap.of([
+                indentWithTab,
+                ...closeBracketsKeymap,
+                ...defaultKeymap, // 使得光标在{}中间按回车时自动创建新行并将光标指向新行并自动换行
+                ...searchKeymap,
+                ...historyKeymap,
+                ...foldKeymap,
+                ...completionKeymap,
+                ...lintKeymap
+            ]),
+            indentOnInput(),
+            highlightActiveLineGutter(),
+            highlightSpecialChars(),
+            foldGutter(),
+            drawSelection(),
+            EditorState.allowMultipleSelections.of(true),
+            syntaxHighlighting(defaultHighlightStyle, {fallback: true}),
+            rectangularSelection(),
+            crosshairCursor(),
+            highlightActiveLine(),
+            highlightSelectionMatches(),
         ],
         parent: document.getElementById(parent_id)
     });
