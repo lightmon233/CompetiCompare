@@ -1,6 +1,5 @@
-code1.cpp
-code2.cpp
 *.txt
 *.exe
+*.cpp
 node_modules/
 dist/
