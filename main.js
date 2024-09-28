@@ -51,13 +51,13 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
-  exec('powershell -Command "rm compare.cpp"', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error: ${error}`);
-      return;
-    }
-  });
-  exec('powershell -Command "rm input_generator.cpp"', (error, stdout, stderr) => {
+
+  store_command = isWindows
+    ? `powershell -Command "rm compare.cpp"
+&& powershell -Command "rm input_generator.cpp"`
+    : `rm compare.cpp && rm input_generator.cpp`
+
+  exec(store_command, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error}`);
       return;
