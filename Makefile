@@ -1,12 +1,3 @@
-# all:
-# 	g++ -o input_generator.exe input_generator.cpp \
-# 	&& .\input_generator.exe \
-# 	&& g++ -o code1.exe code1.cpp \
-# 	&& .\code1.exe < input.txt > output1.txt\
-# 	&& g++ -o code2.exe code2.cpp \
-# 	&& .\code2.exe < input.txt > output2.txt\
-# 	&& g++ -o compare.exe compare.cpp \
-CC = g++
 CC = g++
 OUTPUTS = input_generator$(EXE) code1$(EXE) code2$(EXE) compare$(EXE)
 SOURCES = input_generator.cpp code1.cpp code2.cpp compare.cpp
@@ -15,11 +6,13 @@ OUTPUT1 = output1.txt
 OUTPUT2 = output2.txt
 
 ifeq ($(OS),Windows_NT)
-    RM = del
-    EXE = .exe
+	RM = del
+	EXE = .exe
+	SLASH = \\
 else
-    RM = rm -f
-    EXE = 
+	RM = rm -f
+	EXE = 
+	SLASH = /
 endif
 
 all: $(OUTPUTS)
@@ -36,8 +29,8 @@ code2$(EXE): code2.cpp
 compare$(EXE): compare.cpp
 	$(CC) -o $@ $<
 
-run: input_generator$(EXE)
-	./input_generator$(EXE) && ./code1$(EXE) < $(INPUT_FILE) > $(OUTPUT1) && ./code2$(EXE) < $(INPUT_FILE) > $(OUTPUT2) && ./compare$(EXE)
+run:
+	.$(SLASH)input_generator$(EXE) && .$(SLASH)code1$(EXE) < $(INPUT_FILE) > $(OUTPUT1) && .$(SLASH)code2$(EXE) < $(INPUT_FILE) > $(OUTPUT2) && .$(SLASH)compare$(EXE)
 
 clean:
 	$(RM) $(OUTPUTS)

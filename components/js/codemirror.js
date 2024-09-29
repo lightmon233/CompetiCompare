@@ -24,12 +24,12 @@ const myTheme = EditorView.theme({
     '&': {
         fontFamily: "JetBrains Mono NL",
         fontSize: '16px',
+        width: "700px",
     },
     '.cm-content': {
         fontFamily: "JetBrains Mono NL",
         fontSize: '16px',
         minHeight: "200px",
-        minWidth: "500px"
     },
     '.cm-gutters': {
         fontFamily: "JetBrains Mono NL",

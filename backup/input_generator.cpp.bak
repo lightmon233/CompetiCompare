@@ -1,11 +1,19 @@
 #include <iostream>
 #include <random>
 #include <fstream>
+#include <chrono>
 
 using namespace std;
 
-mt19937_64 rnd(1064);
-int rd(int l, int r) {return rnd() % (r - l + 1) + l;}
+// mt19937_64 rnd(1064);
+// int rd(int l, int r) {return rnd() % (r - l + 1) + l;}
+
+mt19937 rnd(std::chrono::system_clock::now().time_since_epoch().count());
+
+int rd(int l, int r) {
+    std::uniform_int_distribution<int> dist(l, r); // 创建均匀分布
+    return dist(rnd); // 使用分布生成随机数
+}
 
 string s[10];
 

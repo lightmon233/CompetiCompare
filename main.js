@@ -1,5 +1,5 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const { exec } = require('child_process');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const { exec, execSync } = require('child_process');
 const path = require('path');
 const isWindows = process.platform === 'win32';
 
@@ -10,11 +10,16 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    frame: true, // 设置为false以去除标题栏
+    autoHideMenuBar: false, // 隐藏菜单栏
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
     }
   });
+
+  // 完全删除菜单栏
+  Menu.setApplicationMenu(null);
 
   mainWindow.loadFile('index.html');
 
@@ -30,21 +35,36 @@ app.on('ready', () => {
   });
 
   ipcMain.on('run-compare', (event, input) => {
-    exec('make', (error, stdout, stderr) => {
-        if (error) {
-          console.error(`Error compiling: ${error}`);
-          event.reply('compare-result', `Error: Compilation failed. ${stderr}`);
-          return;
-        }
-    });
-    exec('make run', (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Execution error: ${error}`);
-        event.reply('compare-result', `Error: ${stderr}`);
-      } else {
-        event.reply('compare-result', stdout);
-      }
-    });
+    // exec('make', (error, stdout, stderr) => {
+    //     if (error) {
+    //       console.error(`Error compiling: ${error}`);
+    //       event.reply('compare-result', `Error: Compilation failed. ${stderr}`);
+    //       return;
+    //     }
+    // });
+    // exec('make run', (error, stdout, stderr) => {
+    //   if (error) {
+    //     console.error(`Execution error: ${error}`);
+    //     event.reply('compare-result', `Error: ${stderr}`);
+    //   } else {
+    //     event.reply('compare-result', stdout);
+    //   }
+    // });
+    try {
+      execSync('make');
+      event.reply('compare-result', 'Compilation succeeded.');
+    } catch (error) {
+      console.error(`Error compiling: ${error}`);
+      event.reply('compare-result', `Error: Compilation failed. ${error.stderr}`);
+    }
+    try {
+      const stdout = execSync('make run', {stdio: 'pipe'}).toString();
+      event.reply('compare-result', `${stdout}`);
+    } catch (error) {
+      console.error(`Error executing: ${error}`);
+      const errorMessage = error.stderr ? error.stderr.toString() : 'No error output available.';
+      event.reply('compare-result', `Error: Execution failed. ${errorMessage}`);
+    }
   });
 });
 
