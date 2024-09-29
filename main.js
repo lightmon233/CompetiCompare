@@ -19,10 +19,8 @@ app.on('ready', () => {
   mainWindow.loadFile('index.html');
 
   const restore_command = isWindows
-    ? `powershell -Command "cp backup/compare.cpp.bak compare.cpp"
-&& powershell -Command "cp backup/input_generator.cpp.bak input_generator.cpp"`
-    : `cp backup/compare.cpp.bak compare.cpp
-&& cp backup/input_generator.cpp.bak input_generator.cpp`
+    ? `powershell -Command "cp backup/compare.cpp.bak compare.cpp; cp backup/input_generator.cpp.bak input_generator.cpp"`
+    : `cp backup/compare.cpp.bak compare.cpp && cp backup/input_generator.cpp.bak input_generator.cpp`
 
   exec(restore_command, (error, stdout, stderr) => {
     if (error) {
@@ -53,9 +51,8 @@ app.on('ready', () => {
 app.on('window-all-closed', () => {
 
   store_command = isWindows
-    ? `powershell -Command "rm compare.cpp"
-&& powershell -Command "rm input_generator.cpp"`
-    : `rm compare.cpp && rm input_generator.cpp`
+    ? `powershell -Command "mv -Force compare.cpp backup/compare.cpp.bak; mv -Force input_generator.cpp backup/input_generator.cpp.bak"`
+    : `mv -f compare.cpp backup/compare.cpp.bak && mv -f input_generator.cpp backup/input_generator.cpp.bak`
 
   exec(store_command, (error, stdout, stderr) => {
     if (error) {
