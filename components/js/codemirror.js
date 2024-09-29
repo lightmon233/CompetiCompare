@@ -23,7 +23,8 @@ import { lintKeymap } from '@codemirror/lint';
 const myTheme = EditorView.theme({
     '&': {
         fontFamily: "JetBrains Mono NL",
-        fontSize: '16px'
+        fontSize: '16px',
+        height: "100px",
     },
     '.cm-content': {
         fontFamily: "JetBrains Mono NL",
@@ -32,6 +33,9 @@ const myTheme = EditorView.theme({
     '.cm-gutters': {
         fontFamily: "JetBrains Mono NL",
         fontSize: '16px'
+    },
+    '.cm-scroller': {
+        overflow: "auto"
     }
 })
 
