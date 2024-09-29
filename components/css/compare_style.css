@@ -1,0 +1,54 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* 返回按钮 */
+#ret {
+    padding: 10px 20px;
+    margin: 20px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+#ret:hover {
+    background-color: #0056b3;
+}
+
+/* 写入代码按钮 */
+#com {
+    padding: 10px 20px;
+    margin: 20px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+#com:hover {
+    background-color: #218838;
+}
+
+/* 链接样式，去除下划线 */
+a {
+    text-decoration: none;
+}

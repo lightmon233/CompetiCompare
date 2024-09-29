@@ -1,0 +1,66 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+  
+  /* 页面标题 */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+  
+  /* 按钮样式 */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+  
+button:hover {
+    background-color: #0056b3;
+}
+  
+  /* 链接样式，去除下划线 */
+a {
+    text-decoration: none;
+}
+  
+  /* 运行按钮样式 */
+#run-compare {
+    background-color: #28a745;
+    margin-top: 20px;
+}
+  
+#run-compare:hover {
+    background-color: #218838;
+}
+  
+  /* 结果区域样式 */
+#result {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 100px;
+}
+  
