@@ -24,3 +24,16 @@ ipcRenderer.on('send-root-path', (event, path) => {
 });
 
 ipcRenderer.send('get-root-path');
+
+window.onload = () => {
+    if (sessionStorage.getItem('compareContent')) {
+        compare_editor.dispatch({
+            changes: {from: 0, to: compare_editor.state.doc.length, insert: sessionStorage.getItem('compareContent')}
+        });
+    }
+    localStorage.removeItem('compareContent');
+}
+
+window.onbeforeunload = () => {
+    sessionStorage.setItem('compareContent', compare_editor.state.doc.toString());
+}
