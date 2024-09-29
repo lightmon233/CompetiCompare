@@ -8,6 +8,7 @@
 ```bash
 npm install
 ```
+> 安装JetBrainsMono字体以获得最佳体验[nerdfont下载](https://www.nerdfonts.com/font-downloads)
 ## 构建
 ```bash
 npm run build
