@@ -3,3 +3,4 @@
 *.cpp
 node_modules/
 dist/
+out/
