@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const { exec, execSync } = require('child_process');
 const path = require('path');
+const fs = require('fs');
 const isWindows = process.platform === 'win32';
 
 let mainWindow;
@@ -86,4 +87,20 @@ app.on('window-all-closed', () => {
 ipcMain.on('get-root-path', (event) => {
   const rootPath = __dirname;
   event.reply('send-root-path', rootPath);
+});
+
+ipcMain.on('compare-codes', (event, data) => {
+  const { code1, code2 } = data;
+  fs.writeFileSync('code1.cpp', code1);
+  fs.writeFileSync('code2.cpp', code2);
+});
+
+ipcMain.on('write_ig', (event, data) => {
+  const { ig } = data;
+  fs.writeFileSync('input_generator.cpp', ig);
+});
+
+ipcMain.on('write_c', (event, data) => {
+  const { c } = data;
+  fs.writeFileSync('compare.cpp', c);
 })

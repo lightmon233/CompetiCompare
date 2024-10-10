@@ -9,14 +9,7 @@ const compare_editor = createNewEditorView('compare_editor', fs.readFileSync('ba
 
 document.getElementById('com').addEventListener('click', () => {
     var compareContent = compare_editor.state.doc.toString();
-    const filePath = path.join(rootPath, 'compare.cpp');
-    fs.writeFile(filePath, compareContent, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log('compare写入成功');
-    });
+    ipcRenderer.send('write_c', { c: compareContent });
 });
 
 ipcRenderer.on('send-root-path', (event, path) => {

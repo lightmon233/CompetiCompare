@@ -18,22 +18,8 @@ document.getElementById('run-compare').addEventListener('click', () => {
   const filePath1 = path.join(rootPath, 'code1.cpp');
   const filePath2 = path.join(rootPath, 'code2.cpp');
 
-  // 写入文件
-  fs.writeFile(filePath1, code1Content, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log('code1写入成功');
-  });
-
-  fs.writeFile(filePath2, code2Content, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log('code2写入成功');
-  });
+  // 发送消息给主进程
+  ipcRenderer.send('compare-codes', { code1: code1Content, code2: code2Content });
 
   ipcRenderer.send('run-compare');
 });

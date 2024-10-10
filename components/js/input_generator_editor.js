@@ -9,14 +9,7 @@ const input_generator_editor = createNewEditorView('input_generator_editor', fs.
 
 document.getElementById('gen').addEventListener('click', () => {
     var inputGeneratorContent = input_generator_editor.state.doc.toString();
-    const filePath = path.join(rootPath, 'input_generator.cpp');
-    fs.writeFile(filePath, inputGeneratorContent, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log('input_generator写入成功');
-    });
+    ipcRenderer.send('write_ig', { ig: inputGeneratorContent });
 });
 
 ipcRenderer.on('send-root-path', (event, path) => {
