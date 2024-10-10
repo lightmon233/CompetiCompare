@@ -9,6 +9,12 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
+  "files": [
+    "backup",
+    "components",
+    "dist",
+    "Makefile"
+  ],
   "author": "Lightmon",
   "license": "MIT",
   "devDependencies": {
