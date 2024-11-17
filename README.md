@@ -1,19 +1,44 @@
 # CompetiCompare
-一个简单的C++代码对拍器，基于[Electron](https://www.electronjs.org/)构建
 
-## 预览
-![预览图](preview.png)
+A lightweight C++ code comparison tool built with [Electron](https://www.electronjs.org/), designed for competitive programming and algorithm testing.
 
-## 安装依赖
+## 🖼️ Preview
+![Preview Screenshot](preview.png)
+
+## ✨ Features
+- Simple and intuitive interface
+- Real-time code comparison
+- Cross-platform compatibility
+
+## 🚀 Getting Started
+
+### Prerequisites
+For the best experience, we recommend installing the JetBrains Mono font from [Nerd Fonts](https://www.nerdfonts.com/font-downloads).
+
+### Installation
+Install all required dependencies:
 ```bash
 npm install
 ```
-> 安装JetBrainsMono字体以获得最佳体验[nerdfont下载](https://www.nerdfonts.com/font-downloads)
-## 构建
+
+### Building the Application
+Create a production build:
 ```bash
 npm run build
 ```
-## 运行
-```
+
+### Running CompetiCompare
+Launch the application:
+```bash
 npm start
 ```
+
+## 💡 Tips
+- Make sure you have Node.js and npm installed on your system
+- Use the latest version for optimal performance
+
+## 🤝 Contributing
+We welcome contributions! Feel free to submit pull requests or open issues.
+
+## 📝 License
+This project is open source and available under the MIT License.
