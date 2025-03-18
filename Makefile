@@ -8,7 +8,7 @@ OUTPUT2 = output2.txt
 ifeq ($(OS),Windows_NT)
 	RM = del
 	EXE = .exe
-	SLASH = \\
+	SLASH = /
 else
 	RM = rm -f
 	EXE = 
